@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("/chat")
 public class ChatRoomController {
 
-    private final ChatRoomService chatRoomService;
+    private final ChatRoomRepository chatRoomRepository;
 
     // 채팅 리스트 화면
     @GetMapping("/room")
@@ -25,13 +25,13 @@ public class ChatRoomController {
     @GetMapping("/rooms")
     @ResponseBody
     public List<ChatRoom> room() {
-        return chatRoomService.findAllRoom();
+        return chatRoomRepository.findAllRoom();
     }
     // 채팅방 생성
     @PostMapping("/room")
     @ResponseBody
     public ChatRoom createRoom(@RequestParam String name) {
-        return chatRoomService.createChatRoom(name);
+        return chatRoomRepository.createChatRoom(name);
     }
     // 채팅방 입장 화면
     @GetMapping("/room/enter/{roomId}")
@@ -43,6 +43,6 @@ public class ChatRoomController {
     @GetMapping("/room/{roomId}")
     @ResponseBody
     public ChatRoom roomInfo(@PathVariable String roomId) {
-        return chatRoomService.findRoomById(roomId);
+        return chatRoomRepository.findRoomById(roomId);
     }
 }
