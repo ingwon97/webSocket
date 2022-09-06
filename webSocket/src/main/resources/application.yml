@@ -8,6 +8,10 @@ spring:
     cache: false
     suffix: .ftl
     template-loader-path: classpath:/templates
+  config:
+    import: application-secret.yml
+  jwt:
+    secret: ${spring.jwt.secret}
 
   profiles:
     active: local
